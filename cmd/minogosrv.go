@@ -107,11 +107,19 @@ func fetchImageProcessThen(callback func(minotar.Skin) (image.Image, error)) fun
 		username := vars["username"]
 		size := rationalizeSize(vars["size"])
 
-		skin, err := minotar.FetchSkinForUser(username)
-		if err != nil {
+		var skin minotar.Skin
+		var err error
+		if username == "char" {
 			if skin, err = minotar.FetchSkinForSteve(); err != nil {
 				serverErrorPage(w, r)
 				return
+			}
+		} else {
+			if skin, err = minotar.FetchSkinForUser(username); err != nil {
+				if skin, err = minotar.FetchSkinForSteve(); err != nil {
+					serverErrorPage(w, r)
+					return
+				}
 			}
 		}
 
