@@ -167,15 +167,15 @@ func main() {
 	r := mux.NewRouter()
 	r.NotFoundHandler = NotFoundHandler{}
 
-	r.HandleFunc("/avatar/{username:[a-zA-Z0-9]+}{extension:(.png)?}", avatarPage)
-	r.HandleFunc("/avatar/{username:[a-zA-Z0-9]+}/{size:[0-9]+}{extension:(.png)?}", avatarPage)
+	r.HandleFunc("/avatar/{username:[a-zA-Z0-9\\_}{extension:(.png)?}", avatarPage)
+	r.HandleFunc("/avatar/{username:[a-zA-Z0-9\\_}/{size:[0-9]+}{extension:(.png)?}", avatarPage)
 
-	r.HandleFunc("/helm/{username:[a-zA-Z0-9]+}{extension:(.png)?}", helmPage)
-	r.HandleFunc("/helm/{username:[a-zA-Z0-9]+}/{size:[0-9]+}{extension:(.png)?}", helmPage)
+	r.HandleFunc("/helm/{username:[a-zA-Z0-9\\_]+}{extension:(.png)?}", helmPage)
+	r.HandleFunc("/helm/{username:[a-zA-Z0-9\\_]+}/{size:[0-9]+}{extension:(.png)?}", helmPage)
 
-	r.HandleFunc("/download/{username:[a-zA-Z0-9]+}{extension:(.png)?}", downloadPage)
+	r.HandleFunc("/download/{username:[a-zA-Z0-9\\_]+}{extension:(.png)?}", downloadPage)
 
-	r.HandleFunc("/skin/{username:[a-zA-Z0-9]+}{extension:(.png)?}", skinPage)
+	r.HandleFunc("/skin/{username:[a-zA-Z0-9\\_]+}{extension:(.png)?}", skinPage)
 
 	r.HandleFunc("/", indexPage)
 
